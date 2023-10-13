@@ -1,0 +1,100 @@
+<div class="w-full max-w-5xl mt-12">
+  <h2
+    class="container xl:max-w-7xl text-4xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
+  >
+    À PROPOS DE MOI
+  </h2>
+  <div
+    class="container xl:max-w-7xl pl-8 pb-16 lg:pb-4 mt-8 leading-6 space-y-4 relative"
+  >
+    <div class="absolute inset-0">
+      <svg
+        width="836"
+        height="194"
+        viewBox="0 0 836 194"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        xml:space="preserve"
+        preserveAspectRatio="none"
+        class="w-full h-full"
+      >
+        <path
+          id="path1"
+          d="M3.104 3.06799V190.972H782.257V185.289"
+          stroke="#ffcdae"></path>
+        <path
+          id="path2"
+          d="M755.247 175.471H808.199V189.727"
+          stroke="#ff9c5d"
+          stroke-width="4"
+          stroke-linecap="round"></path>
+        <path
+          id="path3"
+          d="M787.728 162.221C805.009 162.221 831.978 162.221 831.978 162.221V177.588"
+          stroke="#ff8335"
+          stroke-width="2"
+          stroke-linecap="round"></path>
+      </svg>
+    </div>
+    <p>Je suis passionné par la programmation.</p>
+    <p class="max-w-[80ch]">
+      Dès que j'ai écrit mes premières lignes de code, j'ai compris que c'est ce
+      à quoi je veux me consacrer et où je veux évoluer professionnellement.
+    </p>
+    <p class="max-w-[80ch]">
+      Je suis quelqu’un qui se fixe toujours pour objectif d'apprendre, et je ne
+      me contente pas simplement de "savoir" faire quelque chose. Je cherche à
+      acquérir les connaissances qui m'aident à résoudre des problèmes de plus
+      en plus complexes de la manière la plus efficace possible.
+    </p>
+  </div>
+</div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const path1 = document.querySelector("#path1") as SVGPathElement;
+    const path2 = document.querySelector("#path2") as SVGPathElement;
+    const path3 = document.querySelector("#path3") as SVGPathElement;
+    const section = document.querySelector("#about-me") as HTMLElement;
+
+    const length1 = path1.getTotalLength();
+    path1.style.strokeDashoffset = `${length1}`;
+    path1.style.strokeDasharray = `${length1}`;
+
+    const length2 = path2.getTotalLength();
+    path2.style.strokeDashoffset = `${length2}`;
+    path2.style.strokeDasharray = `${length2}`;
+
+    const length3 = path3.getTotalLength();
+    path3.style.strokeDashoffset = `${length3}`;
+    path3.style.strokeDasharray = `${length3}`;
+
+    setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              path1.style.transition =
+                "stroke-dashoffset 3s cubic-bezier(0.34, 0.76, 0.51, 0.17) 2s";
+              path1.style.strokeDashoffset = "0";
+
+              path2.style.transition =
+                "stroke-dashoffset 1s cubic-bezier(0.34, 0.76, 0.51, 0.17) 5s";
+              path2.style.strokeDashoffset = "0";
+
+              path3.style.transition =
+                "stroke-dashoffset 1s cubic-bezier(0.34, 0.76, 0.51, 0.17) 6s";
+              path3.style.strokeDashoffset = "0";
+            }
+          });
+        },
+        {
+          rootMargin: "0px 0px -60% 0px",
+          threshold: 0.1,
+        }
+      );
+
+      observer.observe(section);
+    }, 1000);
+  });
+</script>

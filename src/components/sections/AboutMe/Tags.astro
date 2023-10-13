@@ -1,0 +1,212 @@
+<div
+  data-identifier="section_about-me_tags"
+class="w-full mt-12 mt-16">
+  <div class="w-full max-w-5xl mx-auto">
+    <h2
+      class="text-3xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
+    >
+      Toolset
+    </h2>
+  </div>
+  <div
+    id="container"
+    class="w-full max-w-5xl mx-auto fle flex-row justify-center items-start"
+  >
+  </div>
+</div>
+
+<script>
+  import { returnOrThrow } from "@/utils/guards";
+  const tools: Array<
+    Array<{
+      label: string;
+      elementRef: HTMLElement | null;
+    }>
+  > = [
+    [
+      {
+        label: "JAVASCRIPT / TYPESCRIPT",
+        elementRef: null,
+      },
+      {
+        label: "REACT",
+        elementRef: null,
+      },
+      {
+        label: "NEXTJS",
+        elementRef: null,
+      },
+      {
+        label: "NODEJS",
+        elementRef: null,
+      },
+      {
+        label: "ASTRO",
+        elementRef: null,
+      },
+      {
+        label: "TAILWIND",
+        elementRef: null,
+      },
+      {
+        label: "AWS",
+        elementRef: null,
+      },
+    ],
+    [
+      {
+        label: "FIGMA / ADOBE XD",
+        elementRef: null,
+      },
+      {
+        label: "CSS / SASS / POSTCSS",
+        elementRef: null,
+      },
+      {
+        label: "WEBPACK / GRUNT",
+        elementRef: null,
+      },
+      {
+        label: "BOOTSTRAP",
+        elementRef: null,
+      },
+      {
+        label: "HANDLEBARS",
+        elementRef: null,
+      },
+      {
+        label: "PHP 7",
+        elementRef: null,
+      },
+    ],
+    [
+      {
+        label: "LARAVEL / CAKEPHP",
+        elementRef: null,
+      },
+      {
+        label: "GIT",
+        elementRef: null,
+      },
+      {
+        label: "PROGRAMMATION FONCTIONNELLE",
+        elementRef: null,
+      },
+      {
+        label: "DOCKER",
+        elementRef: null,
+      },
+      {
+        label: "WORDPRESS: THÈMES ET PLUGINS",
+        elementRef: null,
+      },
+      {
+        label: "PROGRAMMATION ORIENTÉE OBJET",
+        elementRef: null,
+      },
+      {
+        label: "PRINCIPES SOLID",
+        elementRef: null,
+      },
+      {
+        label: "LINUX",
+        elementRef: null,
+      },
+      {
+        label: "MYSQL",
+        elementRef: null,
+      },
+    ],
+  ];
+  const container = returnOrThrow(document.querySelector(`[data-identifier="section_about-me_tags"] #container`));
+
+  let fontSize = 1.3;
+  let borderBottomWidth = 3;
+  tools.forEach((toolsLine) => {
+    const div = document.createElement("div");
+    div.classList.add("tools-line");
+    div.style.fontSize = `${fontSize}rem`;
+    div.style.setProperty("--border-bottom-width", `${borderBottomWidth}px`);
+    toolsLine.forEach((tool) => {
+      const span = document.createElement("span");
+      span.classList.add("tool");
+      span.innerHTML = tool.label;
+      tool.elementRef = span;
+      div.appendChild(span);
+    });
+    container.appendChild(div);
+    fontSize -= 0.2;
+    borderBottomWidth = borderBottomWidth > 1 ? borderBottomWidth - 1 : 1;
+  });
+
+  tools.forEach((toolsLine, i) => {
+    let dividend = 1.5;
+    toolsLine.forEach((tool) => {
+      if (!tool.elementRef) return;
+      let substractionAmount = dividend / 1.5;
+      tool.elementRef.style.setProperty(
+        "--transitionDelay",
+        `${(1 - substractionAmount) * 3 + 0.5 * i}s`
+      );
+      dividend = substractionAmount;
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.disconnect();
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -30% 0px",
+    }
+  );
+
+  observer.observe(container);
+</script>
+
+<style>
+  #container :global(.tools-line) {
+    @apply flex-wrap flex -ml-4 justify-center;
+    @apply lg:justify-start;
+  }
+
+  #container :global(.tool) {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    border-bottom: var(--border-bottom-width, 2px) solid transparent;
+    transition: border-bottom 0.3s ease-out;
+    transition-delay: var(--transitionDelay);
+  }
+
+  #container.visible :global(.tool) {
+    border-bottom: var(--border-bottom-width, 2px) solid #ff9c5d;
+  }
+
+  #container :global(.tool::after) {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 110%;
+    width: 110%;
+    background-color: var(--body-bg);
+    transition: transform 0.9s ease-out;
+    transition-delay: var(--transitionDelay);
+    border-radius: 100%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  #container.visible :global(.tool::after) {
+    transform: translateX(100%) translateY(-50%);
+  }
+</style>
