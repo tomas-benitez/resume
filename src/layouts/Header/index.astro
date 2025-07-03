@@ -142,14 +142,38 @@
     }
   }
 
+  @property --header-linear-gradient1-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 280deg;
+  }
+  @property --header-linear-gradient2-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 35deg;
+  }
+  @property --header-linear-gradient1-stop1 {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 10%;
+  }
+  @property --header-linear-gradient2-stop1 {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 70%;
+  }
   header::before {
     @apply absolute -inset-16;
     content: "";
-    background: linear-gradient(280deg, #5dc0ff 10%, #008be3 14%, #005a9200 80%),
-      linear-gradient(35deg, #002035, #005a92 70%, #008be3);
+    background: linear-gradient(var(--header-linear-gradient1-angle), #5dc0ff var(--header-linear-gradient1-stop1), #008be3 14%, #005a9200 80%),
+      linear-gradient(var(--header-linear-gradient2-angle), #002035, #005a92 var(--header-linear-gradient2-stop1), #008be3);
     transition:
       opacity 1s cubic-bezier(0.34, 0.76, 0.51, 0.17),
-      transform 1s cubic-bezier(0.34, 0.76, 0.51, 0.17);
+      transform 1s cubic-bezier(0.34, 0.76, 0.51, 0.17),
+      --header-linear-gradient1-angle 1s cubic-bezier(0.34, 0.76, 0.51, 0.17),
+      --header-linear-gradient2-angle 1s cubic-bezier(0.34, 0.76, 0.51, 0.17),
+      --header-linear-gradient1-stop1 1.5s ease-in-out,
+      --header-linear-gradient2-stop1 1.5s ease-in-out;
     filter: blur(30px);
   }
 
@@ -163,8 +187,12 @@
   }
 
   header.collapsed::before {
-    opacity: 0;
+    opacity: 1;
     transform: translateY(-300px);
+    --header-linear-gradient1-angle: 230deg;
+    --header-linear-gradient2-angle: 10deg;
+    --header-linear-gradient1-stop1: 100%;
+    --header-linear-gradient2-stop1: 0%;
   }
 
   .bg-image {
