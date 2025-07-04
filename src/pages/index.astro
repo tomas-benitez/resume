@@ -5,6 +5,11 @@ import ProfExp from "../components/sections/ProfExp/index.astro";
 import CompGen from "../components/sections/CompGen/index.astro";
 import Contact from "../components/sections/Contact/index.astro";
 import Projects from "../components/sections/Projects/index.astro";
+import { setLocale, type Locale } from "../paraglide/runtime.js";
+
+interface Props {}
+
+setLocale(Astro.currentLocale as Locale);
 ---
 
 <Layout title="Tomás Benítez">

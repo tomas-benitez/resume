@@ -1,42 +1,54 @@
-<section 
-  id="projets"
-class="container xl:max-w-7xl pt-8 px-4 overflow-hidden flex flex-col items-center">
+---
+import { getLocale } from "@/paraglide/runtime";
+import { content } from "./index.content";
+import { marked } from "marked";
+const locale = getLocale();
+marked.use({
+  renderer: {
+    em: ({ text }) => {
+      return `<span class="text-[#ffb586] font-bold">${marked.parseInline(text)}</span>`;
+    },
+  },
+  gfm: true,
+  breaks: true,
+});
+---
+
+<section
+  id="projects"
+  class="container xl:max-w-7xl pt-8 px-4 overflow-hidden flex flex-col items-center"
+>
   <div class="w-full max-w-5xl mt-12">
     <h2
       class="text-4xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
     >
-      Projets
+      {content[locale].section_title}
     </h2>
-    <div class="mt-8 space-y-4 border-b pb-4 border-accent-500 border-opacity-25">
-      <h5
-        class="text-2xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
-      >Ce site :</h5>
-      <p class="mt-4">Repository: <a target="_blank" class="text-accent-500 hover:opacity-80" href="https://github.com/tomas-benitez/resume">https://github.com/tomas-benitez/resume</a></p>
-      <p class="mt-4">Framework utilisé : <a target="_blank" class="text-accent-500 hover:opacity-80" href="https://docs.astro.build/en/getting-started/">Astro</a></p>
-      <p class="mt-4">Astro est un framework de construction de sites web statiques qui se concentre sur la performance et l'optimisation. Il permet aux développeurs de créer des sites web rapides en utilisant des composants.</p>
-      <p class="mt-4">Le site a été stylé avec <a target="_blank" class="text-accent-500 hover:opacity-80" href="https://tailwindcss.com/">TailwindCSS</a> et CSS pur, et les animations ont été réalisées avec une combinaison de JavaScript et de CSS pour une meilleure performance.</p>
-    </div>
-    <div class="mt-8 space-y-4 pb-4 border-accent-500 border-opacity-25">
-      <h5
-        class="text-2xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
-      >Fluke Argentina :</h5>
-      <p class="mt-4">Live website: <a target="_blank" class="text-accent-500 hover:opacity-80" href="https://fluke.com.ar">https://fluke.com.ar</a></p>
-      <p class="mt-4">Repository: <a target="_blank" class="text-accent-500 hover:opacity-80" href="https://github.com/tomas-benitez/fluke-site">https://github.com/tomas-benitez/fluke-site</a></p>
-      <p class="mt-4">Framework utilisé : <a target="_blank" class="text-accent-500 hover:opacity-80" href="https://nextjs.org/docs#what-is-nextjs">Next.js</a></p>
-      <p class="mt-4">Next.js est un framework JavaScript open source très populaire pour le développement d'applications web basées sur React. Il est conçu pour simplifier le processus de création d'applications web modernes, en mettant l'accent sur le rendu côté serveur (SSR) et la génération de sites statiques (SSG) pour améliorer les performances.</p>
-      <p class="mt-4">Fluke.com.ar est un site web dédiée à la présentation des produits de haute qualité de la marque "Fluke".</p>
-      <p class="mt-4">Dans ce développement, nous avons rencontré de nombreux défis particuliers, tels que :</p>
-      <ul class="list-disc ml-4 space-y-2 max-w-[90ch]">
-        <li>
-          <b class="text-accent-500">Intégration de produits diversifiés</b> : gérer efficacement une large gamme de produits de mesure et de test de la marque Fluke, en organisant les informations de manière claire et conviviale pour les utilisateurs.
-        </li>
-        <li>
-          <b class="text-accent-500">Gestion des informations sur les produits</b> : collecter, mettre à jour et afficher de manière cohérente les descriptions, spécifications techniques, images et autres détails des produits Fluke tout en garantissant la synchronisation avec les systèmes de gestion des produits de l'entreprise.
-        </li>
-        <li>
-          <b class="text-accent-500">Intégration avec les distributeurs</b> : Établir une connexion avec les plateformes de vente des distributeurs pour mettre à jour leurs informations et de gérer leurs stocks sur le site tout en maintenant la cohérence et la fiabilité des données
-        </li>
-      </ul>
-    </div>
+    {
+      content[locale].projects.map((project) => (
+        <div class="mt-8 space-y-4 pb-4 border-accent-500 border-opacity-25">
+          <h5 class="text-2xl font-display font-bold uppercase tracking-wider text-[#ffb586]">
+            {project.title}
+          </h5>
+          <div
+            class="mt-4 description"
+            set:html={marked.parse(project.description)}
+          />
+        </div>
+      ))
+    }
   </div>
 </section>
+
+<style>
+  .description :global(p),
+  .description :global(ul) {
+    margin-top: 1rem;
+  }
+  .description :global(ul li) {
+    margin-top: 1rem;
+  }
+  .description :global(ul) {
+    @apply list-disc ml-4;
+  }
+</style>

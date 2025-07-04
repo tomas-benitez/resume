@@ -7,4 +7,8 @@ export default defineConfig({
   integrations: [tailwind()],
   site: "https://tomas-benitez.github.io",
   base: "/resume",
+  i18n: {
+    locales: ["en", "es", "fr"],
+    defaultLocale: "es",
+  },
 });

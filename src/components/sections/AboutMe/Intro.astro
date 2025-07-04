@@ -1,8 +1,19 @@
+---
+import { marked } from "marked";
+import { getLocale } from "@/paraglide/runtime";
+import { content } from "./intro.content";
+const locale = getLocale();
+marked.use({
+  gfm: true,
+  breaks: true,
+});
+---
+
 <div class="w-full max-w-5xl mt-12">
   <h2
     class="container xl:max-w-7xl text-4xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
   >
-    À PROPOS DE MOI
+    {content[locale].title}
   </h2>
   <div
     class="container xl:max-w-7xl pl-8 pb-16 lg:pb-4 mt-8 leading-6 relative"
@@ -37,17 +48,7 @@
       </svg>
     </div>
     <div class="flex flex-col md:flex-row">
-      <div class="space-y-4">
-        <p>Je suis passionné par la programmation.</p>
-        <p class="max-w-[80ch]">
-          Dès que j'ai écrit mes premières lignes de code, j'ai compris que c'est ce
-          à quoi je veux me consacrer et où je veux évoluer professionnellement.
-        </p>
-        <p class="max-w-[80ch]">
-          Je suis quelqu’un qui se fixe toujours pour objectif d'apprendre, et je ne
-          me contente pas simplement de "savoir" faire quelque chose. Je cherche à
-          acquérir les connaissances qui m'aident à résoudre des problèmes chaque fois plus complexes de la manière la plus efficace possible.
-        </p>
+      <div class="space-y-4 max-w-[80ch]" set:html={marked.parseInline(content[locale].description)}>
       </div>
       <div class="pl-8 pr-16 pt-8 max-w-xs mx-auto pb-4"><img src="/resume/resume-pic.jpg" alt="Pic of Tomás Benítez" class="rounded-full border-2 border-white" /></div>
     </div>

@@ -1,30 +1,23 @@
+---
+import { getLocale } from "@/paraglide/runtime";
+import { content } from "./index.content";
+const locale = getLocale();
+---
+
 <section class="container xl:max-w-7xl pt-8 px-4 overflow-hidden flex flex-col items-center">
   <div class="w-full max-w-5xl mt-12">
     <h2
       class="container xl:max-w-7xl text-4xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
     >
-      Compétences générales
+      {content[locale].title}
     </h2>
     <div class="mt-8 space-y-4">
       <ul class="list-disc ml-4 space-y-2 max-w-[90ch]">
-        <li>
-          <b class="text-accent-500">Curiosité</b> : Ma curiosité m'incite à rester constamment informé des dernières tendances de l'industrie et à chercher des opportunités d'amélioration.
-        </li>
-        <li>
-          <b class="text-accent-500">Autodidacte</b> : Généralement, je suis capable d'acquérir de nouvelles compétences par moi-même. J'adore faire des recherches et lire de la documentation.
-        </li>
-        <li>
-          <b class="text-accent-500">Résolution de problèmes</b> : Je suis capable de lier des concepts et des idées pour résoudre des problèmes complexes. J'aime trouver des solutions créatives et innovantes.
-        </li>
-        <li>
-          <b class="text-accent-500">Gestion des priorités</b> : Je suis capable de gérer plusieurs projets simultanément et de respecter les délais, en choisissant stratégiquement les tâches à accomplir en premier.
-        </li>
-        <li>
-          <b class="text-accent-500">Travail d'équipe</b> : Je suis capable de travailler en équipe et de collaborer avec d'autres membres de l'équipe pour atteindre un objectif commun.
-        </li>
-        <li>
-          <b class="text-accent-500">Facilité avec les langues</b> : Je suis capable de communiquer en français (C1), en anglais (C1) et en espagnol (natif).
-        </li>
+        {content[locale].items.map((item) => (
+          <li>
+            <b class="text-accent-500">{item.label}</b> : {item.text}
+          </li>
+        ))}
       </ul>
     </div>
   </div>

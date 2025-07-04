@@ -1,0 +1,7 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "example_message": "Bonjour le monde!",
+  "navbar_item_1": "À propos de moi",
+  "navbar_item_2": "Projets",
+  "navbar_item_3": "Contact"
+}

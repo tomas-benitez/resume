@@ -1,20 +1,26 @@
+---
+import { m } from "@/paraglide/messages";
+---
+
 <header class="fixed top-0 left-0 right-0 z-50 h-screen">
   <nav class="flex justify-center items-center h-full">
     <ul>
       <li class="inline-block">
         <a href="#about-me" class="flex items-center">
-          <span class="font-bold uppercase">À PROPOS DE MOI</span>
+          <span class="font-bold uppercase">{m.navbar_item_1()}</span>
         </a>
       </li>
       <li class="inline-block">
-        <a href="#projets" class="flex items-center">
-          <span class="font-bold uppercase">Projets</span>
+        <a href="#projects" class="flex items-center">
+          <span class="font-bold uppercase">
+            {m.navbar_item_2()}
+          </span>
         </a>
       </li>
       <li class="inline-block">
         <a href="#contact" class="flex items-center">
           <span class="font-bold uppercase">
-            Me contacter
+            {m.navbar_item_3()}
           </span>
         </a>
       </li>
@@ -165,8 +171,18 @@
   header::before {
     @apply absolute -inset-16;
     content: "";
-    background: linear-gradient(var(--header-linear-gradient1-angle), #5dc0ff var(--header-linear-gradient1-stop1), #008be3 14%, #005a9200 80%),
-      linear-gradient(var(--header-linear-gradient2-angle), #002035, #005a92 var(--header-linear-gradient2-stop1), #008be3);
+    background: linear-gradient(
+        var(--header-linear-gradient1-angle),
+        #5dc0ff var(--header-linear-gradient1-stop1),
+        #008be3 14%,
+        #005a9200 80%
+      ),
+      linear-gradient(
+        var(--header-linear-gradient2-angle),
+        #002035,
+        #005a92 var(--header-linear-gradient2-stop1),
+        #008be3
+      );
     transition:
       opacity 1s cubic-bezier(0.34, 0.76, 0.51, 0.17),
       transform 1s cubic-bezier(0.34, 0.76, 0.51, 0.17),

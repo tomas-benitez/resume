@@ -1,47 +1,49 @@
-<section class="container xl:max-w-7xl pt-8 px-4 overflow-hidden flex flex-col items-center">
+---
+import { marked } from "marked";
+import { getLocale } from "@/paraglide/runtime";
+import { content } from "./index.content";
+const locale = getLocale();
+marked.use({
+  gfm: true,
+  breaks: true,
+});
+---
+
+<section
+  class="container xl:max-w-7xl pt-8 px-4 overflow-hidden flex flex-col items-center"
+>
   <div class="w-full max-w-5xl mt-12">
     <h2
       class="text-4xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
     >
-      Experience professionnelle
+      {content[locale].section_title}
     </h2>
     <div class="mt-8 space-y-4">
       <h4>
-        <span class="font-bold text-accent-500">Responsable du Développement Informatique</span>
-      </h4> 
+        <span class="font-bold text-accent-500">{content[locale].jobTitle}</span
+        >
+      </h4>
       <p>
-        <span class="font-bold">Agence de Marketing Digital et Développement Web "Digital Mix"</span>
+        <span class="font-bold">{content[locale].company}</span>
       </p>
-      <p>
-        Buenos Aires, Argentina
-      </p>
-      <p>
-        <span class="font-bold">Depuis Février 2020</span> - <span class="font-bold">Aujourd'hui &lpar;4 ans&rpar;</span>
-      </p>
+      <p>Buenos Aires, Argentina</p>
+      <div set:html={marked.parse(content[locale].duration)} />
     </div>
-    <div class="mt-4 space-y-2">
-      <p class="max-w-[80ch]">Dans l'agence Digital Mix, je joue un rôle clé en gérant avec succès les aspects techniques des projets informatiques, contribuant ainsi au développement, à la maintenance et à l'optimisation des solutions web de nos clients.</p>
-      <p>Mes principales responsabilités incluent :</p>
-      <ul class="list-disc ml-4 space-y-2 max-w-[90ch]">
-        <li>
-          Concevoir et développer des sites web personnalisés en utilisant des langages de programmation tels que HTML, CSS, JavaScript, et PHP.
-        </li>
-        <li>
-          Collaborer étroitement avec les équipes de conception et de contenu pour garantir une expérience utilisateur optimale.
-        </li>
-        <li>
-          Assurer la sécurité et la stabilité des sites web en mettant en œuvre de meilleures pratiques en matière de sécurité informatique.
-        </li>
-        <li>
-          Gérer les mises à jour régulières, les correctifs de sécurité et les améliorations fonctionnelles pour garantir des performances optimales.
-        </li>
-        <li>
-          Fournir un support technique aux clients, résoudre les problèmes techniques et répondre aux demandes spécifiques.
-        </li>
-        <li>
-          Collaborer avec d'autres membres de l'équipe pour garantir la cohérence de la stratégie de marketing digital et du développement web.
-        </li>
-      </ul>
-    </div>
+    <div
+      class="mt-4 space-y-2 description"
+      set:html={marked.parse(content[locale].description)}
+    />
   </div>
 </section>
+
+<style>
+  .description :global(ul) {
+    @apply list-disc ml-4 max-w-[90ch];
+  }
+  .description :global(ul li) {
+    @apply mb-2;
+  }
+  .description :global(p) {
+    @apply max-w-[80ch];
+  }
+</style>
