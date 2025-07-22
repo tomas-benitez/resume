@@ -3,7 +3,7 @@ export const content = {
     section_title: "Experience professionnelle",
     jobTitle: "Responsable du Développement Informatique",
     company: 'Agence de Marketing Digital et Développement Web "Digital Mix"',
-    duration: "**Depuis Février 2020** - **Aujourd'hui (4 ans)**",
+    duration: "**Depuis Février 2020** - **Aujourd'hui (5.5 ans)**",
     description: `Dans l'agence Digital Mix, je joue un rôle clé en gérant avec succès les aspects techniques des projets informatiques, contribuant ainsi au développement, à la maintenance et à l'optimisation des solutions web de nos clients.  
 
 Mes principales responsabilités incluent :  
@@ -20,7 +20,7 @@ Mes principales responsabilités incluent :
     section_title: "Experiencia profesional",
     jobTitle: "Líder Técnico",
     company: 'Agencia de Marketing Digital y Desarrollo Web "Digital Mix"',
-    duration: "**Desde Febrero de 2020** - **Hoy (4 años)**",
+    duration: "**Desde Febrero de 2020** - **Hoy (5.5 años)**",
     description: `En la agencia Digital Mix, desempeñé un papel clave gestionando con éxito los aspectos técnicos de los proyectos informáticos, contribuyendo al desarrollo, mantenimiento y optimización de las soluciones web de nuestros clientes.  
 
 Mis principales responsabilidades incluyen:  
@@ -37,7 +37,7 @@ Mis principales responsabilidades incluyen:
     section_title: "Professional Experience",
     jobTitle: "Technical Lead",
     company: 'Digital Marketing and Web Development Agency "Digital Mix"',
-    duration: "**Since February 2020** - **Today (4 years)**",
+    duration: "**Since February 2020** - **Today (5.5 years)**",
     description: `At Digital Mix, I played a key role in successfully managing the technical aspects of IT projects, contributing to the development, maintenance, and optimization of our clients' web solutions.  
 
 My main responsibilities included:  
