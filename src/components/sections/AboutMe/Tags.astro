@@ -5,11 +5,11 @@ const locale = getLocale();
 
 <div
   data-identifier="section_about-me_tags"
-  class="container xl:max-w-7xl mt-12 mt-16"
+  class="container xl:max-w-7xl mt-16 bg-blue-950 py-8 px-12 rounded-md overflow-hidden lg:w-max"
 >
   <div class="w-full max-w-5xl mx-auto">
     <h2
-      class="text-3xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
+      class="text-center lg:text-left mb-8 text-3xl font-display font-bold uppercase tracking-wider text-[#ffb586]"
     >
       Toolset
     </h2>
@@ -112,6 +112,8 @@ const locale = getLocale();
     border-bottom: var(--border-bottom-width, 2px) solid transparent;
     transition: border-bottom 1s ease-out;
     transition-delay: var(--transitionDelay);
+    min-width: max-content;
+    @apply text-center;
   }
 
   #container.visible :global(.tool) {
@@ -126,7 +128,7 @@ const locale = getLocale();
     top: 50%;
     height: 110%;
     width: 110%;
-    background-color: var(--body-bg);
+    @apply bg-blue-950;
     transition: transform 2s ease-out;
     transition-delay: var(--transitionDelay);
     border-radius: 100%;

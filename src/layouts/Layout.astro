@@ -6,7 +6,7 @@ interface Props {
   title: string;
 }
 
-const currentLocale = Astro.currentLocale
+const currentLocale = Astro.currentLocale;
 const { title } = Astro.props;
 ---
 
@@ -27,9 +27,13 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="text-zinc-100">
+    <div class="lottie-animation fixed inset-0 -z-10 opacity-50"></div>
     <Header />
     <div class="relative snap-start snap-always">
-      <img src="/resume/code-image-start-2.jpg" alt="Javascript code on a screen" />
+      <img
+        src="/resume/code-image-start-2.jpg"
+        alt="Javascript code on a screen"
+      />
     </div>
     <main class="snap-start snap-always pb-12">
       <slot />
@@ -72,3 +76,29 @@ const { title } = Astro.props;
     );
   }
 </style>
+
+<script>
+  import lottie from "lottie-web";
+
+  const loadLottieBg = () => {
+    const container = document.querySelector(".lottie-animation");
+    if (!container) {
+      console.error("Lottie container not found");
+      return;
+    }
+
+    const animationItem = lottie.loadAnimation({
+      container,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "/resume/styles/lottie-bg.json",
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    });
+
+    animationItem.setSpeed(0.2);
+  };
+  document.addEventListener("DOMContentLoaded", loadLottieBg);
+</script>
